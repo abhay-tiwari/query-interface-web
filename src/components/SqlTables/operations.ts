@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SqlTableService } from "../../services/sql-tables-service";
 
 export type Schema = {
-    fieldNaame: string;
+    fieldName: string;
     type: string;
 }
 export type SqlTable = {
@@ -12,7 +12,8 @@ export type SqlTable = {
 
 export const useSqlTables = () => {
     const [tables, setTables] = useState<SqlTable[]>();
-    const [isSchemaDialogOpen, setIsSchemaDialogOpen] = useState<boolean>();
+    const [isSchemaDialogOpen, setIsSchemaDialogOpen] = useState<boolean>(false);
+    const [selectedSchema, setSelectedSchema] = useState<Schema[]>();
 
     useEffect(() => {
         fetchSqlTables();
@@ -21,18 +22,26 @@ export const useSqlTables = () => {
     const fetchSqlTables = async () => {
         const tablesData = await SqlTableService.getSqlTables();
         if(tablesData && tablesData.length > 0) {
-            debugger;
             setTables(tablesData);
         }
     }
 
-    const openSchemaDialog = () => {
-        setIsSchemaDialogOpen(true);
+    const onTableSelect = (schema: Schema[]) => {
+        setSelectedSchema(schema);
+        toggleSchemaDialog(true);
     }
+
+
+    const toggleSchemaDialog = (isOpen: boolean) => {
+        setIsSchemaDialogOpen(isOpen);
+    }
+
 
     return {
         tables,
         isSchemaDialogOpen,
-        openSchemaDialog
+        toggleSchemaDialog,
+        selectedSchema,
+        onTableSelect
     }
 }
