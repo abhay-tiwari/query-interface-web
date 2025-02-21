@@ -1,15 +1,15 @@
-import { useState } from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-sql";
 import "ace-builds/src-noconflict/theme-one_dark";
+import 'ace-builds/src-noconflict/ext-language_tools'; 
+
+import useSqlEditor from "./operations";
 
 const SqlEditor = () => {
-  const [query, setQuery] = useState<string>("");
-
-  const handleQueryChange = () => {};
+  const { query, handleQueryChange } = useSqlEditor();
 
   return (
-    <div style={{ height: "500px" }}>
+    <div>
       <AceEditor
         mode="sql"
         theme="one_dark"
@@ -17,12 +17,21 @@ const SqlEditor = () => {
         value={query}
         onChange={handleQueryChange}
         width="100%"
-        height="100%"
+        height="500px"
+
         setOptions={{
           fontSize: "16px",
           fontFamily: "JetBrains Mono",
+          enableLiveAutocompletion: true,
+          enableBasicAutocompletion: true
         }}
       />
+
+      <div className="flex justify-end">
+        <button className="bg-white text-blue-500 px-5 py-2 border border-blue-500 rounded-lg mt-5 transition-all hover:bg-blue-500 hover:cursor-pointer hover:text-white focus:bg-blue-500 focus:text-white focus:cursor-pointer">
+          Execute
+        </button>
+      </div>
     </div>
   );
 };
