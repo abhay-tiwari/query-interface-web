@@ -1,12 +1,14 @@
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-sql";
 import "ace-builds/src-noconflict/theme-one_dark";
-import 'ace-builds/src-noconflict/ext-language_tools'; 
+import "ace-builds/src-noconflict/ext-language_tools";
 
 import useSqlEditor from "./operations";
+import QueryResult from "../QueryResult";
 
 const SqlEditor = () => {
-  const { query, handleQueryChange } = useSqlEditor();
+  const { query, handleQueryChange, handleExecuteQuery, queryResult } =
+    useSqlEditor();
 
   return (
     <div>
@@ -17,20 +19,27 @@ const SqlEditor = () => {
         value={query}
         onChange={handleQueryChange}
         width="100%"
-        height="500px"
-
+        height="300px"
         setOptions={{
           fontSize: "16px",
           fontFamily: "JetBrains Mono",
           enableLiveAutocompletion: true,
-          enableBasicAutocompletion: true
+          enableBasicAutocompletion: true,
+          showPrintMargin: false,
         }}
       />
 
       <div className="flex justify-end">
-        <button className="bg-white text-blue-500 px-5 py-2 border border-blue-500 rounded-lg mt-5 transition-all hover:bg-blue-500 hover:cursor-pointer hover:text-white focus:bg-blue-500 focus:text-white focus:cursor-pointer">
+        <button
+          onClick={handleExecuteQuery}
+          className="bg-white text-blue-500 px-5 py-2 border border-blue-500 rounded-lg mt-5 transition-all hover:bg-blue-500 hover:cursor-pointer hover:text-white focus:bg-blue-500 focus:text-white focus:cursor-pointer"
+        >
           Execute
         </button>
+      </div>
+
+      <div class="mt-5">
+        <QueryResult headers={queryResult?.headers} rows={queryResult?.rows} />
       </div>
     </div>
   );
