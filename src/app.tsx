@@ -1,5 +1,10 @@
 import "./app.css";
+import Navbar from "./components/navbar";
 
-export function App() {
-  return <div class="px-3">hello from app</div>;
-}
+export const App = () => {
+  return (
+    <>
+      <Navbar />
+    </>
+  );
+};
