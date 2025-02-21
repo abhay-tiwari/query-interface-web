@@ -32,7 +32,7 @@ const SqlEditor = () => {
       <div className="flex justify-end">
         <button
           onClick={handleExecuteQuery}
-          className="bg-white text-blue-500 px-5 py-2 border border-blue-500 rounded-lg mt-5 transition-all hover:bg-blue-500 hover:cursor-pointer hover:text-white focus:bg-blue-500 focus:text-white focus:cursor-pointer"
+          className="bg-white text-blue-500 px-5 py-2 border border-blue-500 rounded-lg mt-5 transition-all hover:bg-blue-500 hover:cursor-pointer hover:text-(--primary-text) focus:bg-blue-500 focus:text-(--text-primary) focus:cursor-pointer"
         >
           Execute
         </button>

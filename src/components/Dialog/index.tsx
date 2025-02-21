@@ -21,7 +21,7 @@ const Dialog: React.FC<DialogProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white p-5 rounded-lg max-w-[500px] w-full shadow-lg max-h-[600px] overflow-auto"
+        className="bg-[--primary-color] p-5 rounded-lg max-w-[500px] w-full shadow-lg max-h-[600px] overflow-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center">
