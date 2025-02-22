@@ -12,6 +12,8 @@ const useSqlEditor = () => {
   const { QueriesData } = useContext(QueriesContext);
   const [query, setQuery] = useState<string>("-- Write Query here...");
 
+  const { showToast } = useToast();
+
   useEffect(() => {
     setQuery(QueriesData.selectedQuery);
   }, [QueriesData]);
@@ -21,6 +23,11 @@ const useSqlEditor = () => {
   };
 
   const handleExecuteQuery = async () => {
+    if (!query) {
+      showToast("Empty query cannot be executed", "error");
+      return;
+    }
+
     const queryResultResponse = await QueryService.getQueryResult();
     setQueryResult(queryResultResponse);
   };
