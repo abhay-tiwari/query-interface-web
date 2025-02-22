@@ -1,3 +1,8 @@
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import QueryResultTable from "../QueryResultTable";
+import QueryResultVisualization from "../QueryResultVisualization";
+
 export type QueryResultProps = {
   rows?: any[];
   headers?: string[];
@@ -5,32 +10,25 @@ export type QueryResultProps = {
 
 const QueryResult = ({ headers, rows }: QueryResultProps) => {
   return (
-    <div className="max-h-[800px] overflow-y-auto">
-      <table class="w-100">
-        <thead>
-          <tr>
-            {headers?.map((x) => (
-              <th className="border border-gray-200 p-2 text-left">{x}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows?.map((row) => {
-            return (
-              <tr>
-                {headers?.map((x) => {
-                  return (
-                    <td className="border border-gray-200 p-2 text-left">
-                      {row[x]}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <>
+      {headers && headers.length > 0 ? (
+        <Tabs>
+          <TabList>
+            <Tab>Table</Tab>
+            <Tab>Chart</Tab>
+          </TabList>
+
+          <TabPanel>
+            <QueryResultTable headers={headers} rows={rows} />
+          </TabPanel>
+          <TabPanel>
+            <QueryResultVisualization />
+          </TabPanel>
+        </Tabs>
+      ) : (
+        <div className="text-center">Execute Query to see Data.</div>
+      )}
+    </>
   );
 };
 

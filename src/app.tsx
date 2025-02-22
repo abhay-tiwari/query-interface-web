@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import "./app.css";
 import Navbar from "./components/Navbar";
 import SqlEditor from "./components/SqlEditor";
@@ -19,6 +20,7 @@ export const App = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

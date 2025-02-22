@@ -19,3 +19,7 @@ body {
   color: var(--text-primary);
   background-color: var(--primary-bg);
 }
+
+input:focus, input:hover {
+  outline: none;
+}
