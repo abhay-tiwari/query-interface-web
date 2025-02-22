@@ -21,7 +21,7 @@ const AutoComplete = ({
   return (
     <div className="relative w-full">
       <input
-        className="p-2 border border-(--text-primary) rounded-lg transition-all hover:border-(--primary-color) focus:border-(--primary-color)"
+        className="p-2 h-full border border-(--text-primary) rounded-lg transition-all hover:border-(--primary-color) focus:border-(--primary-color)"
         type="text"
         value={inputValue}
         onChange={handleInputChange}

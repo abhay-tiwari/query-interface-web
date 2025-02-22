@@ -20,9 +20,7 @@ const QueryResultVisualization = () => {
   };
 
   const {
-    formValues,
     formErrors,
-    handleInputChange,
     handleSubmit,
     chartTypes,
     onOptionSelection,
@@ -33,7 +31,7 @@ const QueryResultVisualization = () => {
       {!isVisualizationOpen && (
         <div className="w-full">
           <form onSubmit={handleSubmit}>
-            <div className="login-heading">
+            <div>
               <h2 className="text-xl p-3">Query Visualization</h2>
             </div>
 

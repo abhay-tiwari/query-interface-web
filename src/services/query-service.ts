@@ -45,18 +45,18 @@ export const QueryService = {
     }
   },
 
-  getSavedQueries: async (): Promise<any> => {
+  getSavedQueries: async (): Promise<{ data: string[] } | undefined> => {
     const { showToast } = useToast();
     try {
       const response = await fetch(`${API_BASE_URL}get-saved-queries`);
       if (!response.ok) {
-        showToast("Error in api response", "error");
+        showToast("Error in fetching saved queries", "error");
       }
 
       const data = await response.json();
       return data;
     } catch (err) {
-      showToast("Something went wrong", "error");
+      showToast("Error in fetching saved queries", "error");
     }
   },
 };
