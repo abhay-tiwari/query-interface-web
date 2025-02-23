@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import "./app.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/index.tsx";
 import SqlEditor from "./components/SqlEditor";
 import SqlTables from "./components/SqlTables";
 import { QueriesProvider } from "./context/query-context";
