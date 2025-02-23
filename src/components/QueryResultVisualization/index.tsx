@@ -2,33 +2,32 @@ import AutoComplete from "../Autocomplete";
 import QueryResultChart from "../QueryResultChart";
 import { useQueryResultVisualization } from "./operations";
 
-const QueryResultVisualization = () => {
-  const option = {
-    xAxis: {
-      type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    },
-    yAxis: {
-      type: "value",
-    },
-    series: [
-      {
-        data: [150, 230, 224, 218, 135, 147, 260],
-        type: "line",
-      },
-    ],
-  };
+export type VisualizationDataProps = {
+  headers: string[];
+  rows?: any[];
+  visualizationData: any[];
+};
 
+const QueryResultVisualization = ({
+  headers,
+  rows,
+  visualizationData,
+}: VisualizationDataProps) => {
   const {
     formErrors,
+    formValues,
     handleSubmit,
     chartTypes,
+    xAxisOptions,
+    yAxisOptions,
     onOptionSelection,
     isVisualizationOpen,
-  } = useQueryResultVisualization();
+    xAxisItems,
+    yAxisItems,
+  } = useQueryResultVisualization(visualizationData, rows, headers);
   return (
     <>
-      {!isVisualizationOpen && (
+      {!isVisualizationOpen && chartTypes?.length > 0 && (
         <div className="w-full">
           <form onSubmit={handleSubmit}>
             <div>
@@ -40,7 +39,9 @@ const QueryResultVisualization = () => {
                 <AutoComplete
                   suggestions={chartTypes}
                   placeholder="Chart Type..."
-                  onOptionSelection={onOptionSelection}
+                  onOptionSelection={(value) => {
+                    onOptionSelection("type", value);
+                  }}
                 />
                 {formErrors?.type && (
                   <div className="text-(--highlight-color)">
@@ -48,28 +49,37 @@ const QueryResultVisualization = () => {
                   </div>
                 )}
               </div>
+              {xAxisOptions.length > 0 && (
+                <div className="ml-4">
+                  <AutoComplete
+                    suggestions={xAxisOptions}
+                    placeholder="X Axis..."
+                    onOptionSelection={(value) =>
+                      onOptionSelection("xAxisData", value)
+                    }
+                  />
+                  {formErrors?.xAxisData && (
+                    <div className="text-(--highlight-color)">
+                      {formErrors?.xAxisData}
+                    </div>
+                  )}
+                </div>
+              )}
               <div className="ml-4">
-                <AutoComplete
-                  suggestions={chartTypes}
-                  placeholder="X Axis..."
-                  onOptionSelection={onOptionSelection}
-                />
-                {formErrors?.xAxisData && (
-                  <div className="text-(--highlight-color)">
-                    {formErrors?.xAxisData}
-                  </div>
-                )}
-              </div>
-
-              <div className="ml-4">
-                <AutoComplete
-                  suggestions={chartTypes}
-                  placeholder="Y Axis..."
-                  onOptionSelection={onOptionSelection}
-                />
-                {formErrors?.yAxisData && (
-                  <div className="text-(--highlight-color)">
-                    {formErrors?.yAxisData}
+                {yAxisOptions.length > 0 && (
+                  <div>
+                    <AutoComplete
+                      suggestions={yAxisOptions}
+                      placeholder="Y Axis..."
+                      onOptionSelection={(value) => {
+                        onOptionSelection("yAxisData", value);
+                      }}
+                    />
+                    {formErrors?.yAxisData && (
+                      <div className="text-(--highlight-color)">
+                        {formErrors?.yAxisData}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -87,7 +97,13 @@ const QueryResultVisualization = () => {
         </div>
       )}
 
-      {isVisualizationOpen && <QueryResultChart option={option} />}
+      {isVisualizationOpen && xAxisItems && yAxisItems && formValues?.type && (
+        <QueryResultChart
+          xAxisItems={xAxisItems}
+          yAxisItems={yAxisItems}
+          chartType={formValues?.type}
+        />
+      )}
     </>
   );
 };

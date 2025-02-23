@@ -5,6 +5,7 @@ const API_BASE_URL = "http://localhost:3001/api/";
 export type QueryResultResponse = {
   headers: string[];
   rows: any[];
+  visualizationData?: any[];
 };
 
 export const QueryService = {

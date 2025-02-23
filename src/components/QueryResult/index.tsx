@@ -6,9 +6,14 @@ import QueryResultVisualization from "../QueryResultVisualization";
 export type QueryResultProps = {
   rows?: any[];
   headers?: string[];
+  visualizationData?: any[];
 };
 
-const QueryResult = ({ headers, rows }: QueryResultProps) => {
+const QueryResult = ({
+  headers,
+  rows,
+  visualizationData,
+}: QueryResultProps) => {
   return (
     <>
       {headers && headers.length > 0 ? (
@@ -22,7 +27,17 @@ const QueryResult = ({ headers, rows }: QueryResultProps) => {
             <QueryResultTable headers={headers} rows={rows} />
           </TabPanel>
           <TabPanel>
-            <QueryResultVisualization />
+            {visualizationData && visualizationData.length > 0 ? (
+              <QueryResultVisualization
+                visualizationData={visualizationData}
+                headers={headers}
+                rows={rows}
+              />
+            ) : (
+              <div className="text-center py-8">
+                No Data Available for Visualization.
+              </div>
+            )}
           </TabPanel>
         </Tabs>
       ) : (

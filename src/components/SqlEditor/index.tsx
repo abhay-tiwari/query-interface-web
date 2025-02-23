@@ -51,7 +51,11 @@ const SqlEditor = () => {
       </div>
 
       <div class="mt-5">
-        <QueryResult headers={queryResult?.headers} rows={queryResult?.rows} />
+        <QueryResult
+          headers={queryResult?.headers}
+          rows={queryResult?.rows}
+          visualizationData={queryResult?.visualizationData}
+        />
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type VisualizationFormValues = {
   type?: string;
-  xAxisData?: any[];
-  yAxisData?: any[];
+  xAxisData?: string;
+  yAxisData?: string;
 };
 
 export type VisualizationFormErrors = {
@@ -12,14 +12,65 @@ export type VisualizationFormErrors = {
   yAxisData?: string;
 };
 
-export const useQueryResultVisualization = () => {
+export const useQueryResultVisualization = (
+  visualizationData: any[],
+  rows: any[],
+  headers: string[]
+) => {
   const [formValues, setFormValues] = useState<VisualizationFormValues>();
   const [formErrors, setFormErrors] = useState<VisualizationFormErrors>();
   const [isVisualizationOpen, setIsVisualizationOpen] =
     useState<boolean>(false);
-  const chartTypes = ["Line", "Bar", "Area"];
+  const [chartTypes, setChartTypes] = useState<string[]>([]);
+  const [xAxisOptions, setXAxisOptions] = useState<string[]>([]);
+  const [yAxisOptions, setYAxisOptions] = useState<string[]>([]);
+  const [xAxisItems, setXAxisItems] = useState<string[]>([]);
+  const [yAxisItems, setYAxisItems] = useState<string[]>([]);
 
-  const handleInputChange = () => {};
+  useEffect(() => {
+    setChartTypes(visualizationData.map((x) => x.chartType));
+  }, [visualizationData]);
+
+  useEffect(() => {
+    if (formValues?.type) {
+      visualizationData.forEach((x) => {
+        if (x.chartType === formValues.type) {
+          setXAxisOptions(x.fields.xAxis);
+          setYAxisOptions(x.fields.yAxis);
+        }
+      });
+    }
+  }, [formValues?.type]);
+
+  useEffect(() => {
+    if (!formValues?.xAxisData) {
+      return;
+    }
+
+    let items: string[] = [];
+    rows.forEach((row) => {
+      if (formValues?.xAxisData) {
+        items.push(row[formValues.xAxisData]);
+      }
+    });
+
+    setXAxisItems(items);
+  }, [formValues?.xAxisData]);
+
+  useEffect(() => {
+    if (!formValues?.yAxisData) {
+      return;
+    }
+
+    let items: string[] = [];
+    rows.forEach((row) => {
+      if (formValues?.yAxisData) {
+        items.push(row[formValues.yAxisData]);
+      }
+    });
+
+    setYAxisItems(items);
+  }, [formValues?.yAxisData]);
 
   const validate = () => {
     const formErrors: VisualizationFormErrors = {};
@@ -48,15 +99,30 @@ export const useQueryResultVisualization = () => {
     }
   };
 
-  const onOptionSelection = () => {};
+  const onOptionSelection = (key: string, value: string | undefined) => {
+    if (!value) {
+      return;
+    }
+
+    if (key === "type") {
+      setFormValues({ ...formValues, type: value });
+    } else if (key === "xAxisData") {
+      setFormValues({ ...formValues, xAxisData: value });
+    } else if (key === "yAxisData") {
+      setFormValues({ ...formValues, yAxisData: value });
+    }
+  };
 
   return {
     formValues,
     formErrors,
-    handleInputChange,
     handleSubmit,
     chartTypes,
+    xAxisOptions,
+    yAxisOptions,
     onOptionSelection,
     isVisualizationOpen,
+    xAxisItems,
+    yAxisItems,
   };
 };
