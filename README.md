@@ -7,6 +7,7 @@
 - Visualize results in charts.
 - Save Queries in Backend
 - Get Saved Query in Searchbar.
+- **Render a large amount of rows without breaking the browser using react window module.**
 
 ## JavaScript Framework and plugin used.
 
