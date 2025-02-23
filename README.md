@@ -16,6 +16,7 @@
 - React Tabs
 - Tailwind CSS
 - React Toastify
+- React Window
 
 ## Web Metrix
 
