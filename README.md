@@ -1,6 +1,5 @@
 # Query Interface Web
 
-
 ## Features Developed
 
 - Run SQL queries directly from the web interface.
@@ -28,12 +27,12 @@ To get started with this project, follow these steps:
    ```
 
 2. Install dependencies:
-```bash npm install ```
+   `npm install`
 
 ### Running the Project
 
-`bash npm run dev `
+`npm run dev`
 
 ### Build for Production
 
-`bash npm run build `
+`npm run build`
