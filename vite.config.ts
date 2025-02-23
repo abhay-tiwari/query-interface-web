@@ -8,10 +8,10 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@components": path.resolve(__dirname, "src/components"),
-      "@context": path.resolve(__dirname, "src/context"),
-      "@custom-hooks": path.resolve(__dirname, "src/custom-hooks"),
-      "@services": path.resolve(__dirname, "src/services"),
+      "@components": path.resolve(__dirname, "components"),
+      "@context": path.resolve(__dirname, "context"),
+      "@custom-hooks": path.resolve(__dirname, "custom-hooks"),
+      "@services": path.resolve(__dirname, "services"),
     },
   },
 });
