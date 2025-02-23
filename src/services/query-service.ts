@@ -8,10 +8,18 @@ export type QueryResultResponse = {
 };
 
 export const QueryService = {
-  getQueryResult: async (): Promise<QueryResultResponse | undefined> => {
+  executeQuery: async (body: {
+    query: string;
+  }): Promise<QueryResultResponse | undefined> => {
     const { showToast } = useToast();
     try {
-      const response = await fetch(`${API_BASE_URL}/query-result`);
+      const response = await fetch(`${API_BASE_URL}/execute-query`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (!response.ok) {
         showToast("Error in api response", "error");
       }
@@ -35,7 +43,7 @@ export const QueryService = {
         },
       });
       if (!response.ok) {
-        console.log("err in api response");
+        showToast("Error in saving query", "error");
       }
 
       const data = await response.json();

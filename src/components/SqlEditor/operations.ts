@@ -28,7 +28,11 @@ const useSqlEditor = () => {
       return;
     }
 
-    const queryResultResponse = await QueryService.getQueryResult();
+    const body = {
+      query,
+    };
+
+    const queryResultResponse = await QueryService.executeQuery(body);
     setQueryResult(queryResultResponse);
   };
 
