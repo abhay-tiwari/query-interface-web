@@ -1,6 +1,6 @@
 import { SqlTable } from "../components/SqlTables/operations";
 
-const API_BASE_URL = "http://localhost:3001/api/";
+const API_BASE_URL = "https://query-interface-backend.onrender.com/api/";
 
 export const SqlTableService = {
   getSqlTables: async (): Promise<SqlTable[] | undefined> => {

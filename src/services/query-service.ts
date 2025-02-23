@@ -1,6 +1,6 @@
 import { useToast } from "../custom-hooks/toast";
 
-const API_BASE_URL = "http://localhost:3001/api/";
+const API_BASE_URL = "https://query-interface-backend.onrender.com/api/";
 
 export type QueryResultResponse = {
   headers: string[];
