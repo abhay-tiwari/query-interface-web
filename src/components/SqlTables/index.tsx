@@ -12,7 +12,7 @@ const SqlTables = () => {
 
   return (
     <div className="mr-3">
-      <h2 class="text-lg font-semibold mb-5">Tables </h2>
+      <h2 className="text-lg font-semibold mb-5">Tables </h2>
       <ul>
         {tables?.map((x) => (
           <li>
@@ -34,7 +34,7 @@ const SqlTables = () => {
         onClose={() => toggleSchemaDialog(false)}
         title="Table Schema"
       >
-        <table class="w-100">
+        <table className="w-100">
           <thead>
             <tr>
               <th className="border border-gray-200 p-2 text-left">Field</th>

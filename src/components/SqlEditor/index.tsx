@@ -50,7 +50,7 @@ const SqlEditor = () => {
         </button>
       </div>
 
-      <div class="mt-5">
+      <div className="mt-5">
         <QueryResult
           headers={queryResult?.headers}
           rows={queryResult?.rows}

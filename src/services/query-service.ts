@@ -1,4 +1,4 @@
-import { useToast } from "../custom-hooks/toast";
+import { useToast } from "@custom-hooks/toast";
 
 const API_BASE_URL = "http://localhost:3001/api/";
 

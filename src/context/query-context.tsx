@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { QueryService } from "../services/query-service";
-import { useToast } from "../custom-hooks/toast";
+import { QueryService } from "@services/query-service";
+import { useToast } from "@custom-hooks/toast";
 
 type QueriesData = {
   queries: string[];
