@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { QueriesContext } from "@context/query-context";
+import { QueriesContext } from "@/context/query-context";
 
 export const useNavbar = () => {
   const { QueriesData, UpdateQueriesData } = useContext(QueriesContext);
