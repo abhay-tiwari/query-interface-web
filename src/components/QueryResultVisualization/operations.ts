@@ -14,8 +14,7 @@ export type VisualizationFormErrors = {
 
 export const useQueryResultVisualization = (
   visualizationData: any[],
-  rows: any[],
-  headers: string[]
+  rows: any[] | undefined
 ) => {
   const [formValues, setFormValues] = useState<VisualizationFormValues>();
   const [formErrors, setFormErrors] = useState<VisualizationFormErrors>();
@@ -48,7 +47,7 @@ export const useQueryResultVisualization = (
     }
 
     let items: string[] = [];
-    rows.forEach((row) => {
+    rows?.forEach((row) => {
       if (formValues?.xAxisData) {
         items.push(row[formValues.xAxisData]);
       }
@@ -63,7 +62,7 @@ export const useQueryResultVisualization = (
     }
 
     let items: string[] = [];
-    rows.forEach((row) => {
+    rows?.forEach((row) => {
       if (formValues?.yAxisData) {
         items.push(row[formValues.yAxisData]);
       }

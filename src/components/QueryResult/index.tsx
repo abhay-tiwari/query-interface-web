@@ -30,7 +30,6 @@ const QueryResult = ({
             {visualizationData && visualizationData.length > 0 ? (
               <QueryResultVisualization
                 visualizationData={visualizationData}
-                headers={headers}
                 rows={rows}
               />
             ) : (

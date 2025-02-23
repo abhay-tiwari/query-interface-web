@@ -3,13 +3,11 @@ import QueryResultChart from "../QueryResultChart";
 import { useQueryResultVisualization } from "./operations";
 
 export type VisualizationDataProps = {
-  headers: string[];
   rows?: any[];
   visualizationData: any[];
 };
 
 const QueryResultVisualization = ({
-  headers,
   rows,
   visualizationData,
 }: VisualizationDataProps) => {
@@ -24,7 +22,7 @@ const QueryResultVisualization = ({
     isVisualizationOpen,
     xAxisItems,
     yAxisItems,
-  } = useQueryResultVisualization(visualizationData, rows, headers);
+  } = useQueryResultVisualization(visualizationData, rows);
   return (
     <>
       {!isVisualizationOpen && chartTypes?.length > 0 && (
