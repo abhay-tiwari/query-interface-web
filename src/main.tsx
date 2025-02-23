@@ -1,5 +1,7 @@
-import { render } from 'preact'
-import './index.css'
-import { App } from './app.tsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { App } from "./app.tsx";
 
-render(<App />, document.getElementById('app')!)
+const root = ReactDOM.createRoot(document.getElementById("app")!);
+root.render(<App />);
