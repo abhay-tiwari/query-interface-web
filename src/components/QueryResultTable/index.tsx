@@ -1,37 +1,59 @@
+import React from "react";
+import { FixedSizeList as List } from "react-window";
+
 export type QueryResultTableProps = {
   rows?: any[];
   headers?: string[];
 };
 
 const QueryResultTable = ({ headers, rows }: QueryResultTableProps) => {
+  const rowHeight = 80;
+  const tableHeight = 800;
+
+  const Row = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => {
+    const row = rows ? rows[index] : [];
+    return (
+      <div style={style} className="flex border-b border-(--border-color)">
+        {headers?.map((header) => (
+          <div className="flex-1 p-2 text-left" key={header}>
+            {row[header]}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="overflow-x-auto max-h-[800px]">
-      <table className="min-w-full table-auto">
-        <thead className="sticky top-0 bg-(--primary-bg)">
-          <tr>
-            {headers?.map((x) => (
-              <th className="border border-(--border-color) p-2 text-left">
-                {x}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows?.map((row) => {
-            return (
-              <tr>
-                {headers?.map((x) => {
-                  return (
-                    <td className="border border-(--border-color) p-2 text-left">
-                      {row[x]}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="sticky top-0 bg-(--primary-bg) flex border-b border-(--border-color)">
+        {headers?.map((header) => (
+          <div className="flex-1 p-2 text-left" key={header}>
+            {header}
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 bg-(--primary-bg)">
+        {rows?.length ? (
+          <List
+            height={tableHeight}
+            itemCount={rows.length}
+            itemSize={rowHeight}
+            width="100%"
+          >
+            {Row}
+          </List>
+        ) : (
+          <div className="flex border-b border-(--border-color)">
+            <div className="flex-1 p-2 text-left">No data available</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
