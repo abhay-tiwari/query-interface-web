@@ -1,3 +1,5 @@
+import React from "react";
+
 interface DialogProps {
   isOpen: boolean;
   onClose: () => void;

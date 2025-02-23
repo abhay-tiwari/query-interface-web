@@ -1,3 +1,4 @@
+import React from "react";
 import AutoComplete from "../Autocomplete";
 import QueryResultChart from "../QueryResultChart";
 import { useQueryResultVisualization } from "./operations";
