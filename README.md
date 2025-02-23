@@ -1,10 +1,29 @@
 # Query Interface Web
 
-## Features Developed
+## Basic Overview
 
 - Run SQL queries directly from the web interface.
 - View query results in a tabular format.
 - Visualize results in charts.
+- Save Queries in Backend
+- Get Saved Query in Searchbar.
+
+## JavaScript Framework and plugin used.
+
+- React.js
+- Ace Editor
+- React eCharts
+- React Tabs
+- Tailwind CSS
+- React Toastify
+
+## Web Metrix
+
+### Source [GTMetrix Report Link](https://gtmetrix.com/reports/calm-hamster-dc5710.netlify.app/OxQKAvsz/#)
+
+- LCP - 680 ms
+- Total Blocking Time - 0ms
+- CLS - 0
 
 ## Getting Started
 
