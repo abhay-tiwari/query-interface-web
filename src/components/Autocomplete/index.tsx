@@ -17,9 +17,10 @@ const AutoComplete = ({
     isListVisible,
     handleSelectSuggestion,
     handleInputChange,
+    autocompleteRef,
   } = useAutocompleteOperation(suggestions, onOptionSelection);
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={autocompleteRef}>
       <input
         className="p-2 h-full border border-(--text-primary) rounded-lg transition-all hover:border-(--primary-color) focus:border-(--primary-color)"
         type="text"

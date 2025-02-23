@@ -9,7 +9,7 @@ import { useToast } from "../../custom-hooks/toast";
 
 const useSqlEditor = () => {
   const [queryResult, setQueryResult] = useState<QueryResultResponse>();
-  const { QueriesData } = useContext(QueriesContext);
+  const { QueriesData, UpdateQueriesData } = useContext(QueriesContext);
   const [query, setQuery] = useState<string>("-- Write Query here...");
 
   const { showToast } = useToast();
@@ -58,6 +58,13 @@ const useSqlEditor = () => {
 
     try {
       await QueryService.saveQuery(body);
+      const queriesResponse = await QueryService.getSavedQueries();
+
+      UpdateQueriesData({
+        queries: queriesResponse?.data ? queriesResponse.data : [],
+        selectedQuery: "",
+      });
+
       showToast("Query is saved successfully", "success");
     } catch (err) {
       showToast("Something went wrong!", "error");

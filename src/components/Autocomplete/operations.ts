@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useClickOutside from "../../custom-hooks/outsideClick";
 
 export const useAutocompleteOperation = (
   suggestions: string[],
@@ -7,6 +8,8 @@ export const useAutocompleteOperation = (
   const [inputValue, setInputValue] = useState<string>("");
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const [isListVisible, setIsListVisible] = useState<boolean>(false);
+
+  const autocompleteRef = useClickOutside(() => setIsListVisible(false));
 
   const handleInputChange = (event: any) => {
     const query = event?.target?.value;
@@ -36,5 +39,6 @@ export const useAutocompleteOperation = (
     isListVisible,
     handleInputChange,
     handleSelectSuggestion,
+    autocompleteRef,
   };
 };
