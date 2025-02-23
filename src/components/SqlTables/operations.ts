@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SqlTableService } from "@services/sql-tables-service";
+import { SqlTableService } from "@/services/sql-tables-service";
 
 export type Schema = {
   fieldName: string;

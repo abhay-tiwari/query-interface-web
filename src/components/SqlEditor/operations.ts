@@ -3,9 +3,9 @@ import {
   QueryResultResponse,
   QueryService,
 } from "../../services/query-service";
-import { useToast } from "../../custom-hooks/toast";
+import { useToast } from "@/custom-hooks/toast";
 import { useContext } from "react";
-import { QueriesContext } from "../../context/query-context";
+import { QueriesContext } from "@/context/query-context";
 
 const useSqlEditor = () => {
   const [queryResult, setQueryResult] = useState<QueryResultResponse>();

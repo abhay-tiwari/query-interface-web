@@ -6,12 +6,8 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@context/*": ["context/*"],
-      "@custom-hooks/*": ["custom-hooks/*"],
-      "@services/*": ["services/*"]
+      "@/*": ["./src/*"]
     },
 
     /* Bundler mode */

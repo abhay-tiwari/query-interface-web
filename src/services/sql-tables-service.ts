@@ -1,4 +1,4 @@
-import { SqlTable } from "@components/SqlTables/operations";
+import { SqlTable } from "@/components/SqlTables/operations";
 
 const API_BASE_URL = "http://localhost:3001/api/";
 

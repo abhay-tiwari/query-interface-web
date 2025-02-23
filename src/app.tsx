@@ -1,10 +1,10 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "./app.css";
-import Navbar from "@components/Navbar";
-import SqlEditor from "@components/SqlEditor";
-import SqlTables from "@components/SqlTables";
-import { QueriesProvider } from "@context/query-context";
+import Navbar from "@/components/Navbar";
+import SqlEditor from "@/components/SqlEditor";
+import SqlTables from "@/components/SqlTables";
+import { QueriesProvider } from "@/context/query-context";
 
 export const App = () => {
   return (
