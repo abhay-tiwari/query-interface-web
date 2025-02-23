@@ -1,4 +1,3 @@
-import React from "react";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-sql";
 import "ace-builds/src-noconflict/theme-one_dark";

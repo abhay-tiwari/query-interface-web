@@ -1,5 +1,3 @@
-import React from "react";
-
 export type QueryResultTableProps = {
   rows?: any[];
   headers?: string[];

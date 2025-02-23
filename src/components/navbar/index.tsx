@@ -1,4 +1,3 @@
-import React from "react";
 import AutoComplete from "../Autocomplete";
 import { useNavbar } from "./operations";
 

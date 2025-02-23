@@ -1,4 +1,4 @@
-import { useToast } from "@/custom-hooks/toast";
+import { useToast } from "../custom-hooks/toast";
 
 const API_BASE_URL = "http://localhost:3001/api/";
 
@@ -65,6 +65,7 @@ export const QueryService = {
       const data = await response.json();
       return data;
     } catch (err) {
+      console.log(err);
       showToast("Error in fetching saved queries", "error");
     }
   },
